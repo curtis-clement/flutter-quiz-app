@@ -49,7 +49,6 @@ class _MyFirstAppState extends State<MyFirstApp> {
   ];
 
   void _selectAnswer(int score) {
-
     _totalScore = _totalScore + score;
 
     if (_questionIndex < _questions.length) {
@@ -59,6 +58,13 @@ class _MyFirstAppState extends State<MyFirstApp> {
       _questionIndex = _questionIndex + 1;
     });
     print(_questionIndex);
+  }
+
+  void _resetQuiz() {
+    setState(() {
+      _questionIndex = 0;
+      _totalScore = 0;
+    });
   }
 
   @override
@@ -74,7 +80,7 @@ class _MyFirstAppState extends State<MyFirstApp> {
               questionIndex: _questionIndex,
               questions: _questions,
             )
-          : Result(_totalScore),
+          : Result(_totalScore, _resetQuiz),
     ));
   }
 }
