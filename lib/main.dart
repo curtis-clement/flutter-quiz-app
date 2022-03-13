@@ -17,22 +17,41 @@ class MyFirstApp extends StatefulWidget {
 
 class _MyFirstAppState extends State<MyFirstApp> {
   var _questionIndex = 0;
+  var _totalScore = 0;
   final _questions = [
     {
       'questionText': 'What is your favourite colour?',
-      'answers': ['Blue', 'Red', 'Green', 'Orange'],
+      'answers': [
+        {'text': 'Blue', 'score': 2},
+        {'text': 'Red', 'score': 4},
+        {'text': 'Green', 'score': 1},
+        {'text': 'Orange', 'score': 3}
+      ],
     },
     {
       'questionText': 'What is your favourite animal?',
-      'answers': ['Dog', 'Elephant', 'Monkey', 'Cat'],
+      'answers': [
+        {'text': 'Dog', 'score': 2},
+        {'text': 'Elephant', 'score': 3},
+        {'text': 'Monkey', 'score': 4},
+        {'text': 'Cat', 'score': 1}
+      ],
     },
     {
       'questionText': 'Whos is your favourite artist?',
-      'answers': ['Beatles', 'Lady Gaga', 'Blink 182', 'Stevie Wonder'],
+      'answers': [
+        {'text': 'Beatles', 'score': 2},
+        {'text': 'Lady Gag', 'score': 1},
+        {'text': 'Blink 182', 'score': 4},
+        {'text': 'Stevie Wonder', 'score': 3}
+      ],
     },
   ];
 
-  void _selectAnswer() {
+  void _selectAnswer(int score) {
+
+    _totalScore = _totalScore + score;
+
     if (_questionIndex < _questions.length) {
       print('We have more questions!');
     }
@@ -55,7 +74,7 @@ class _MyFirstAppState extends State<MyFirstApp> {
               questionIndex: _questionIndex,
               questions: _questions,
             )
-          : Result(),
+          : Result(_totalScore),
     ));
   }
 }
